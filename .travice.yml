@@ -1,0 +1,39 @@
+os:
+  - linux
+
+language: php
+
+php:
+  - '7.2'
+
+before_script:
+  - composer self-update
+  - composer install --no-interaction
+  - cp .env.travis .env
+  - pear install pear/PHP_CodeSniffer
+  - phpenv rehash
+
+script:
+  - vendor/bin/phpunit --coverage-text
+  os:
+    - linux
+
+  language: php
+
+  php:
+    - '7.1'
+
+  before_script:
+    - composer self-update
+    - composer install --no-interaction
+    - php artisan key:generate
+    - cp .env.travis .env
+    - pear install pear/PHP_CodeSniffer
+    - phpenv rehash
+    - nvm install 7.7.1
+    - npm install npm@latest -g
+    - npm install -g jshint
+    - npm install
+
+  script:
+    - vendor/bin/phpunit --coverage-text
