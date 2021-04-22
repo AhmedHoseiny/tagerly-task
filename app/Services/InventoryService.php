@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
-use App\Repositories\JsonInventoryRepository;
+use App\Repositories\Contracts\InventoryRepositoryInterface;
 
 class InventoryService
 {
     private $inventoryRepo;
 
-    public function __construct(JsonInventoryRepository $inventoryRepo)
+    public function __construct(InventoryRepositoryInterface $inventoryRepo)
     {
         $this->inventoryRepo = $inventoryRepo;
     }
